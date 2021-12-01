@@ -1,8 +1,7 @@
 window.addEventListener("load", function () {
   let count = 0;
 
-  const regex =
-  /(?<lowBound>\d+)-(?<highBound>\d+)\s(?<targetWord>\w):\s(?<password>\w+)/;
+  const regex = /(?<lowBound>\d+)-(?<highBound>\d+)\s(?<targetWord>\w):\s(?<password>\w+)/;
 
   input.forEach((element) => {
     const regexResult = regex.exec(element);
