@@ -30,12 +30,6 @@ window.addEventListener("load", function () {
     executeCommand(commandDirection, commandUnit)
   });
 
-  console.log("aim: " + aim)
-  console.log("horizontalPosition: " + horizontalPosition)
-
-  console.log("verticalPosition: " + verticalPosition)
-
-
   const resultOutput = this.document.querySelector(".result");
   resultOutput.innerHTML = `horizontalPosition: ${horizontalPosition}; verticalPosition: ${verticalPosition}; Final result: ${horizontalPosition * verticalPosition}`;
 
