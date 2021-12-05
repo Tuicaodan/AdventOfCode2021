@@ -9,20 +9,18 @@ window.addEventListener("load", function () {
     newArray = updatedArray(newArray, drawnInput[i]);
 
     let eachRoundResult = checkBingo(newArray, matrixSize);
-      console.log("eachRoundResult: " + eachRoundResult);
-      console.log("drawnNumber: " + drawnInput[i]);
 
       if (eachRoundResult != -1) {
+        console.log(eachRoundResult)
+        console.log(drawnInput[i])
         result = eachRoundResult * drawnInput[i];
         finalResult = result
         break;
       }
   }
 
-  console.log(finalResult);
-
-  // const resultOutput = this.document.querySelector(".result");
-  // resultOutput.innerHTML = `Final result: ${finalResult}`;
+  const resultOutput = this.document.querySelector(".result");
+  resultOutput.innerHTML = `Final result: ${finalResult}`;
 });
 
 const updatedArray = (inputArray, drawnNumber) => {
@@ -62,15 +60,27 @@ const checkMartixBingo = (inputMatrix, matrixSize) => {
   //check the row
   result = checkRowBingo(inputMatrix, matrixSize);
   if (result != -1) {
+    result = calculateBoardScroe(inputMatrix)
     return result;
   }
   //check the col
   result = checkColBingo(inputMatrix, matrixSize);
   if (result != -1) {
+    result = calculateBoardScroe(inputMatrix)
     return result;
   }
   return result;
 };
+
+const calculateBoardScroe = (inputMatrix) => {
+  let sum =0;
+  inputMatrix.forEach(jsonElement => {
+    if (jsonElement.marked == false) {
+      sum += jsonElement.number;
+    }
+  });
+  return sum;
+}
 
 const checkRowBingo = (inputMatrix, matrixSize) => {
   let result = -1;
@@ -96,7 +106,7 @@ const checkColBingo = (inputMatrix, matrixSize) => {
   let result = -1;
   for (let i = 0; i <= matrixSize - 1; i++) {
     let colArray = [];
-    for (let j = 0; j <= inputMatrix.length - 1; j += matrixSize) {
+    for (let j = i; j <= inputMatrix.length - 1; j += matrixSize) {
       colArray.push(inputMatrix[j]);
     }
     let markedCount = 0;
